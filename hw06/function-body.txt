@@ -1,0 +1,16 @@
+function morph(commands, unicode, defaultUPM){
+    var minNumber = (defaultUPM >> (defaultUPM.toString(2).length-2))*(-10);
+    var maxNumber = (defaultUPM >> (defaultUPM.toString(2).length-2))*10;
+    for(var i=0;i<commands.length;i++){
+        var cmd = commands[i];
+        var cmdProperty = Object.keys(cmd);
+        for(var j=0; j<cmdProperty.length; j++){
+            if(typeof commands[i][cmdProperty[j]] == 'number'){
+                var randomInt = Math.random() * (maxNumber - minNumber) + minNumber;
+                commands[i][cmdProperty[j]] += randomInt;
+                commands[i][cmdProperty[j]] = +(commands[i][cmdProperty[j]].toFixed(4))
+            }
+        }
+    }
+    return [ commands ] ;
+};
